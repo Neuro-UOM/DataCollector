@@ -4,6 +4,7 @@ import platform
 import time
 import ctypes
 import csv
+import time
 
 from array import *
 from ctypes import *

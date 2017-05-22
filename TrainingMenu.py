@@ -4,6 +4,7 @@ import sys
 from PyQt5 import QtCore, QtGui, QtWidgets
 from TrainingMenuUI import Ui_Dialog
 import AverageBandPowers as ABP
+import time
 
 
 class TrainingMenu(Ui_Dialog):
@@ -16,19 +17,20 @@ class TrainingMenu(Ui_Dialog):
 		self.startBtn.clicked.connect(self.startBtnClicked)
 		self.endBtn.clicked.connect(self.endBtnClicked)
 		self.chooseDirectoryBtn.clicked.connect(self.chooseDirectoryBtnClicked)
-
+		
 	def startBtnClicked(self):
 		print("Start Button Clicked")
-		ABP.setFileName("name")
+		ABP.setFileName(self.chooseDirectoryText.text())
+		
 
 	def endBtnClicked(self):
 		print("End Button Clicked")
 		progressBar.setProperty("value", 0)
 
 	def chooseDirectoryBtnClicked(self):
-		print("Choose Directory Button Clicked")            
-		chooseDirectoryText.setText("Set Location Like This")
+		print("Choose Directory Button Clicked")
 		
+	
 
 if __name__ == '__main__':
 	app = QtWidgets.QApplication(sys.argv)
