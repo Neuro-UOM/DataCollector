@@ -1,4 +1,4 @@
 /output/
 *.pyc
 /.idea/
-/--pycache/
+/__pycache__/
