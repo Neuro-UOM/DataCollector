@@ -145,6 +145,6 @@ class DataCollector(QThread):
             time.sleep(0.1)
         # -------------------------------------------------------------------------
         self.file.close()
-        libEDK.IEE_EngineDisconnect()
-        libEDK.IEE_EmoStateFree(self.eState)
-        libEDK.IEE_EmoEngineEventFree(self.eEvent)
+        # libEDK.IEE_EngineDisconnect()
+        # libEDK.IEE_EmoStateFree(self.eState)
+        # libEDK.IEE_EmoEngineEventFree(self.eEvent)
