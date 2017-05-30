@@ -8,10 +8,10 @@ import threading
 import time
 import threading
 
-
 class TrainingMenu(Ui_Dialog):
 
-	remainingSeconds = 300 # Training Time in seconds
+	remainingSeconds = 6 # Training Time in seconds
+	REMAIN = 6
 
 	def __init__(self, dialog):
 
@@ -32,13 +32,13 @@ class TrainingMenu(Ui_Dialog):
 		print("Start Button Clicked")
 		self.dataCollector.setName(self.chooseDirectoryText.text())
 		self.dataCollector.start()
-		self.remainingSeconds = 300
+		self.remainingSeconds = self.REMAIN
 		self.trainingTimer()
-		self.changeTimer("5:00",300)
+		self.changeTimer("1:00",self.REMAIN)
 
 	def endBtnClicked(self):
 		print("End Button Clicked")
-		self.remainingSeconds = 0;
+		self.remainingSeconds = 0
 		progressBar.setProperty("value", 0)
 		self.dataCollector.stop()
 
@@ -47,17 +47,24 @@ class TrainingMenu(Ui_Dialog):
 		
 	def changeTimer(self,value,seconds):
 		timeRemainingLabel.setText(value)
-		#progressBar.setProperty("value", int(100*(300-seconds)/300))
+		# progressBar.setProperty("value", seconds)
 
 	def trainingTimer(self):
 		if(self.remainingSeconds > 0):
 			threading.Timer(1.0, self.trainingTimer).start()
 			self.remainingSeconds -= 1
-			print(self.remainingSeconds)
+			print("time " + str(self.remainingSeconds))
 			timeString = ""
 			timeString +=  str( self.remainingSeconds / 60 ) + ":"
-			timeString += str( self.remainingSeconds % 60 )
+			if (self.remainingSeconds % 60<10):
+				timeString += "0" + str( self.remainingSeconds % 60 )
+			else:
+				timeString += str( self.remainingSeconds % 60 )
 			self.changeTimer(timeString,self.remainingSeconds)
+			# progressBar.setProperty("value", 300 - self.remainingSeconds)
+		else: 
+			self.dataCollector.stop()
+		
 
 
 if __name__ == '__main__':
