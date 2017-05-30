@@ -97,14 +97,15 @@ class DataCollector(QThread):
 
         # headlist writing
         headList = []
+        headList.append("Time")
         for i in channelList:
-            for j in dataTypes:
-                headList.append(str(i) + " " + str(j))
+            for j in range (1,len(dataTypes)):
+                headList.append(str(i) + " " + str(dataTypes[j]))
 
         print "Time, Theta, Alpha, Low_beta, High_beta, Gamma \n"
         writer.writerow(headList)
         # headlist writing is over
-        # start = time.time()
+        start = time.time()
         
         while (1):
             if self.shared == True:
@@ -123,10 +124,10 @@ class DataCollector(QThread):
                 
                                 
                 if ready == 1:
-                    # end = time.time()
-                    # time = (end - start)
+                    end = time.time()
+                    elapsedTime = (end - start)
                     listData = []
-                    # listData.append(time)
+                    listData.append(elapsedTime)
                     for i in channelList: 
                         result = c_int(0)
                         result = libEDK.IEE_GetAverageBandPowers(self.userID, i, self.theta, self.alpha, self.low_beta, self.high_beta, self.gamma)
