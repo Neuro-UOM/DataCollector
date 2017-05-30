@@ -83,7 +83,7 @@ class DataCollector(QThread):
     def startCollect(self):
         writer = csv.writer(self.file)
         channelList = array('I',[3, 7, 9, 12, 16])   # IED_AF3, IED_AF4, IED_T7, IED_T8, IED_Pz 
-        dataTypes = ["Time, Theta", "Alpha", "Low_beta", "High_beta", "Gamma"]
+        dataTypes = ["Theta", "Alpha", "Low_beta", "High_beta", "Gamma"]
         # -------------------------------------------------------------------------
         print "==================================================================="
         print "Example to get the average band power for a specific channel from" \
@@ -99,8 +99,8 @@ class DataCollector(QThread):
         headList = []
         headList.append("Time")
         for i in channelList:
-            for j in range (1,len(dataTypes)):
-                headList.append(str(i) + " " + str(dataTypes[j]))
+            for j in dataTypes:
+                headList.append(str(i) + " " + str(j))
 
         print "Time, Theta, Alpha, Low_beta, High_beta, Gamma \n"
         writer.writerow(headList)
