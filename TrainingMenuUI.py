@@ -53,6 +53,12 @@ class Ui_Dialog(object):
         self.timeRemainingLabel.setFont(font)
         self.timeRemainingLabel.setAlignment(QtCore.Qt.AlignCenter)
         self.timeRemainingLabel.setObjectName("timeRemainingLabel")
+        self.labelText = QtWidgets.QLineEdit(Dialog)
+        self.labelText.setGeometry(QtCore.QRect(130, 140, 131, 31))
+        self.labelText.setObjectName("labelText")
+        self.label_3 = QtWidgets.QLabel(Dialog)
+        self.label_3.setGeometry(QtCore.QRect(50, 140, 71, 31))
+        self.label_3.setObjectName("label_3")
 
         self.retranslateUi(Dialog)
         self.buttonBox.accepted.connect(Dialog.accept)
@@ -68,6 +74,8 @@ class Ui_Dialog(object):
         self.chooseDirectoryBtn.setText(_translate("Dialog", "..."))
         self.label_2.setText(_translate("Dialog", "Time Remaining"))
         self.timeRemainingLabel.setText(_translate("Dialog", "5:00"))
+        self.labelText.setText(_translate("Dialog", "0"))
+        self.label_3.setText(_translate("Dialog", "Label"))
 
 
 if __name__ == "__main__":
