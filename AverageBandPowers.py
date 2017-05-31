@@ -68,6 +68,10 @@ class DataCollector(QThread):
     theta     = pointer(thetaValue)
 
     shared = False
+    label = ""
+
+    def setLabel(self,label):
+        self.label = label
 
     def run(self):
         self.startCollect()
@@ -103,6 +107,7 @@ class DataCollector(QThread):
                 headList.append(str(i) + " " + str(j))
 
         print "Time, Theta, Alpha, Low_beta, High_beta, Gamma \n"
+        headList.append("Label")
         writer.writerow(headList)
         # headlist writing is over
         start = time.time()
@@ -140,7 +145,9 @@ class DataCollector(QThread):
                             # writer.writerow(thetaValue.value, alphaValue.value,low_betaValue.value, high_betaValue.value, gammaValue.value)
                             listData.extend((self.thetaValue.value, self.alphaValue.value, self.low_betaValue.value, self.high_betaValue.value, self.gammaValue.value))
                     print "\n"
-                    writer.writerow(listData)    
+                    if result == 0:
+                        listData.append(self.label)
+                        writer.writerow(listData)
             elif state != 0x0600:
                 print "Internal error in Emotiv Engine ! "
             time.sleep(0.1)

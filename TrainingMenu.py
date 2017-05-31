@@ -15,7 +15,7 @@ class TrainingMenu(Ui_Dialog):
 
 	def __init__(self, dialog):
 
-		global chooseDirectoryText,progressBar,timeRemainingLabel
+		global chooseDirectoryText,progressBar,timeRemainingLabel,labelText
 
 		Ui_Dialog.__init__(self)
 		self.setupUi(dialog)
@@ -26,11 +26,13 @@ class TrainingMenu(Ui_Dialog):
 		self.endBtn.clicked.connect(self.endBtnClicked)
 		self.chooseDirectoryBtn.clicked.connect(self.chooseDirectoryBtnClicked)
 		self.dataCollector = DataCollector()
+		labelText = self.labelText
 
 		
 	def startBtnClicked(self):
 		print("Start Button Clicked")
 		self.dataCollector.setName(self.chooseDirectoryText.text())
+		self.dataCollector.setLabel(self.labelText.text())
 		self.dataCollector.start()
 		self.remainingSeconds = self.REMAIN
 		self.trainingTimer()
