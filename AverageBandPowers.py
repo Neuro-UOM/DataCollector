@@ -86,7 +86,7 @@ class DataCollector(QThread):
     # set file name for the data recording file
     def startCollect(self):
         writer = csv.writer(self.file)
-        channelList = array('I',[3, 7, 9, 12, 16])   # IED_AF3, IED_AF4, IED_T7, IED_T8, IED_Pz 
+        channelList = array('I',[3, 4, 5 ,6 ,7 ,8 ,9 ,10, 11 ,12, 13 ,14 ,15, 16])   # IED_AF3, IED_AF4, IED_T7, IED_T8, IED_Pz 
         dataTypes = ["Theta", "Alpha", "Low_beta", "High_beta", "Gamma"]
         # -------------------------------------------------------------------------
         print "==================================================================="

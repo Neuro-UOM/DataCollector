@@ -10,8 +10,8 @@ import threading
 
 class TrainingMenu(Ui_Dialog):
 
-	remainingSeconds = 6 # Training Time in seconds
-	REMAIN = 6
+	remainingSeconds = 60 # Training Time in seconds
+	REMAIN = 60
 
 	def __init__(self, dialog):
 
