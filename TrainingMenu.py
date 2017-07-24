@@ -10,8 +10,8 @@ import threading
 
 class TrainingMenu(Ui_Dialog):
 
-	remainingSeconds = 60 # Training Time in seconds
-	REMAIN = 60
+	remainingSeconds = 30 # Training Time in seconds
+	REMAIN = 30
 
 	def __init__(self, dialog):
 
@@ -36,13 +36,15 @@ class TrainingMenu(Ui_Dialog):
 		self.dataCollector.start()
 		self.remainingSeconds = self.REMAIN
 		self.trainingTimer()
-		self.changeTimer("1:00",self.REMAIN)
+		self.changeTimer("0:30",self.REMAIN)
+		self.startBtn.setEnabled(False)
 
 	def endBtnClicked(self):
 		print("End Button Clicked")
 		self.remainingSeconds = 0
 		progressBar.setProperty("value", 0)
 		self.dataCollector.stop()
+		self.startBtn.setEnabled(True)
 
 	def chooseDirectoryBtnClicked(self):
 		print("Choose Directory Button Clicked")
@@ -59,13 +61,13 @@ class TrainingMenu(Ui_Dialog):
 			timeString = ""
 			timeString +=  str( self.remainingSeconds / 60 ) + ":"
 			if (self.remainingSeconds % 60<10):
-				timeString += "0" + str( self.remainingSeconds % 60 )
-			else:
-				timeString += str( self.remainingSeconds % 60 )
+				timeString += "0"
+			timeString += str( self.remainingSeconds % 60 )
 			self.changeTimer(timeString,self.remainingSeconds)
 			# progressBar.setProperty("value", 300 - self.remainingSeconds)
-		else: 
+		else:
 			self.dataCollector.stop()
+			self.startBtn.setEnabled(True)
 		
 
 
